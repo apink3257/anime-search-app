@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Bonus Implementation
 
 * **UI/UX Enhancements:**
@@ -9,3 +10,7 @@
 * **Technical Excellence:**
     * **Race Condition Handling:** The search feature prevents race conditions by canceling any in-flight API requests if the user types a new query. This is achieved by calling `.abort()` on the `promise` returned by the dispatched Redux thunk within the `useEffect` cleanup function.
     * **Error Handling:** Both the search and detail pages properly handle API errors using `try...catch` blocks and `thunk.rejected`, displaying a user-friendly error message.
+=======
+# anime-search-app
+An anime searching web using Jikan API
+>>>>>>> d55c3084d08a51ec0f5b225069fdd7eb235370f0
