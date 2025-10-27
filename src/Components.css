@@ -1,0 +1,270 @@
+/* src/Components.css */
+
+/* --- AnimeCard Style (Flip Effect) --- */
+.anime-card {
+  background-color: transparent; /* The front/back will have color */
+  border-radius: 10px;
+  height: 550px; 
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.anime-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d; /* This is the key 3D property */
+}
+
+/* This class is added by React on click */
+.anime-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+/* Shared styles for front and back */
+.anime-card-front,
+.anime-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden; /* Hides the back of the card */
+  
+  /* Styling from your original card */
+  background-color: var(--card-background);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Front Face Styling --- */
+.anime-card-front img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border-color);
+  transition: filter 0.3s ease; /* <-- ADDED: For smooth blur */
+}
+
+.anime-card-front h3 {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  padding: 1rem;
+  margin: 0;
+  white-space: normal;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.anime-card-front a {
+  display: block;
+  background-color: var(--accent-blue);
+  color: #fff;
+  text-align: center;
+  padding: 0.8rem;
+  text-decoration: none;
+  font-weight: 700;
+  margin: 0 1rem 1rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  margin-top: auto; 
+}
+
+.anime-card-front a:hover {
+  background-color: var(--accent-blue-dark);
+}
+
+/* --- Back Face Styling --- */
+.anime-card-back {
+  /* Starts rotated 180deg (hidden) */
+  transform: rotateY(180deg);
+  padding: 1.5rem;
+  box-sizing: border-box;
+  color: var(--text-light);
+}
+
+.anime-card-back h3 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--accent-blue);
+  padding-bottom: 0.5rem;
+}
+
+.anime-card-back .details-list p {
+  font-size: 1.1rem;
+  margin: 0.75rem 0;
+}
+
+.anime-card-back .details-list p strong {
+  color: var(--text-muted);
+  width: 100px;
+  display: inline-block;
+}
+
+/* --- HOVER EFFECT STYLES --- */
+
+.anime-card-front::after {
+  content: 'Click to Flip';
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  
+  pointer-events: none;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* REPLACED: This rule handles the hover effect */
+.anime-card:hover .anime-card-inner {
+  transform: translateY(-5px); 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* REPLACED: This shows the large central icon on hover */
+.anime-card:hover .anime-card-front::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.anime-card:hover .anime-card-front img {
+  filter: blur(5px) brightness(0.6);
+}
+
+.anime-card:hover .anime-card-inner.is-flipped {
+  transform: rotateY(180deg) translateY(0);
+  box-shadow: none;
+}
+
+/* --- PaginationControls Style --- */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.pagination-controls button {
+  background-color: var(--accent-blue);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pagination-controls button:hover {
+  background-color: var(--accent-blue-dark);
+}
+
+.pagination-controls button:disabled {
+  background-color: var(--border-color);
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.pagination-controls span {
+  font-size: 1.2rem;
+  font-weight: 600;
+  min-width: 120px;
+  text-align: center;
+}
+
+/* --- SkeletonCard Style (Shimmer Effect) --- */
+/* (This section is unchanged) */
+.skeleton-card {
+  background-color: var(--card-background);
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0) 80%
+  );
+  
+  transform: translateX(-100%);
+  
+  animation: shimmer 2s infinite;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 300px;
+  background-color: var(--border-color);
+  border-radius: 6px;
+  animation: pulse-subtle 2s infinite ease-in-out;
+}
+
+.skeleton-text {
+  height: 22px;
+  width: 80%;
+  margin-top: 15px;
+  background-color: var(--border-color);
+  border-radius: 4px;
+  animation: pulse-subtle 2s infinite ease-in-out;
+}
+
+.skeleton-text.short {
+  width: 50%;
+  margin-top: 10px;
+  height: 35px;
+  border-radius: 8px;
+  animation: pulse-subtle 2s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-subtle {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 1;
+  }
+}

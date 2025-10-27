@@ -1,0 +1,82 @@
+/* src/index.css */
+
+/* Global styles for a consistent look */
+:root {
+  --background-dark: #1A202C; /* Deep charcoal */
+  --text-light: #E2E8F0;    /* Off-white */
+  --text-muted: #A0AEC0;    /* Light gray for secondary text */
+  --accent-blue: #4299E1;   /* Primary blue accent */
+  --accent-blue-dark: #3182CE; /* Darker blue for hover */
+  --card-background: #2D3748; /* Darker charcoal for cards */
+  --border-color: #4A5568;  /* Subtle border/separator */
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-light);
+  overflow-x: hidden; 
+}
+
+body {
+  background-image: url('./assets/anime-collage.png');
+  background-size: cover; /* Cover the entire viewport */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Don't repeat the image */
+  background-attachment: fixed; /* Keep image fixed on scroll */
+  overflow-y: scroll; /* Ensures scrolling is on the body */
+  position: relative;
+  z-index: 0; /* Ensure overlay is behind content */
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+  backdrop-filter: blur(3px); /* Optional: add a slight blur */
+  z-index: 1; /* Overlay sits above background image */
+}
+
+/* Ensure #root and its content are above the overlay */
+#root {
+  position: relative;
+  z-index: 2; /* Content sits above the overlay */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure it takes full height */
+}
+
+/* Base button style */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background-dark); /* Dark track */
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-blue); /* Blue thumb */
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue-dark); /* Darker blue on hover */
+}

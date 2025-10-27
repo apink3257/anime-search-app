@@ -1,0 +1,194 @@
+/* src/pages/SearchPage.css */
+
+.search-page {
+  width: 100%;
+  flex-grow: 1; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 2; 
+  position: relative;
+}
+
+.search-page h1 {
+  text-align: center;
+  font-size: 3rem; 
+  color: #fff;
+  background-image: linear-gradient(90deg, var(--accent-blue), #81E6D9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2.5rem; 
+  text-shadow: 0 0 10px rgba(66, 153, 225, 0.5); 
+}
+
+/* Wrapper for search and dropdown */
+.search-controls {
+  display: flex;
+  flex-direction: column; /* Stack on mobile */
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 3rem auto;
+}
+
+.search-input {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 0; 
+  flex-grow: 1; 
+  padding: 1.2rem 1.5rem; 
+  font-size: 1.2rem;
+  color: var(--text-light);
+  background-color: var(--card-background);
+  border: 2px solid var(--border-color);
+  border-radius: 10px; 
+  outline: none;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Styles for the dropdown */
+.limit-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--card-background);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.limit-selector label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.limit-selector select {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-light);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.limit-selector select option {
+  background-color: var(--card-background);
+  color: var(--text-light);
+}
+
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.6);
+}
+
+.status-container {
+  text-align: center;
+  margin-top: 4rem;
+  color: var(--text-muted);
+}
+
+.status-container h3 {
+  font-size: 1.8rem;
+  color: var(--text-light);
+}
+
+.top-anime-container {
+  width: 100%;
+  max-width: 1400px; 
+  margin: 0 auto;
+}
+
+.top-anime-container h2 {
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--accent-blue);
+  padding-bottom: 0.5rem;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive grid for the results */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 220px); /* Changed to auto-fit */
+  justify-content: center; 
+  gap: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+
+/* This is the grid for the Top 3 items */
+.top-3-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 220px); /* Changed to auto-fit */
+  justify-content: center; 
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  padding-bottom: 4rem;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .search-page h1 {
+    font-size: 2.2rem;
+  }
+  .search-input {
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+  }
+  
+  .results-grid {
+    grid-template-columns: repeat(auto-fit, 180px);
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .top-3-grid {
+    grid-template-columns: repeat(auto-fit, 180px);
+    justify-content: center;
+    gap: 1.5rem;
+  }
+}
+
+/* Media query for desktop layout */
+@media (min-width: 768px) {
+  .search-controls {
+    flex-direction: row; /* Put search and dropdown side-by-side */
+  }
+}
+
+@media (max-width: 480px) {
+  .search-page h1 {
+    font-size: 1.8rem;
+  }
+  .search-input {
+    max-width: 90%;
+  }
+  
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .top-3-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

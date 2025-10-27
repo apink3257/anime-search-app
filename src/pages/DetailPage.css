@@ -1,0 +1,241 @@
+/* src/pages/DetailPage.css */
+
+.detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  z-index: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  flex-grow: 1; 
+  min-height: 80vh;
+}
+/* --- Back Link --- */
+.back-link {
+  display: inline-block;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--accent-blue);
+}
+
+/* --- Main Content Card --- */
+.detail-content-wrapper {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: grid;
+  /* Grid for a 2-column layout */
+  grid-template-columns: 350px 1fr; /* Fixed image, flexible text */
+}
+
+.detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Fix for grid layout, ensures image isn't squished */
+  min-height: 500px; 
+}
+
+/* --- Info Section (Right Side) --- */
+.detail-info {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
+}
+
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.meta-item strong {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.detail-synopsis h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.detail-synopsis p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-height: 300px; /* Limit synopsis height */
+  overflow-y: auto; /* Add scroll if too long */
+  padding-right: 10px; /* For scrollbar */
+}
+
+/* --- Status/Loading/Error States --- */
+.detail-status-container {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 3rem;
+  color: var(--text-muted);
+  background-color: var(--card-background);
+  border-radius: 12px;
+}
+
+.detail-status-container h1 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.detail-status-container a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.detail-status-container a:hover {
+  text-decoration: underline;
+}
+
+/* --- Skeleton Loader --- */
+.skeleton-loader {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  position: relative; /* <-- Add this */
+  overflow: hidden; /* <-- Add this */
+}
+
+/* Add the shimmer wave */
+.skeleton-loader::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
+
+.skeleton-image-box {
+  background-color: var(--border-color);
+  min-height: 500px;
+  animation: pulse-subtle 2s infinite ease-in-out; /* <-- Use new pulse */
+}
+.skeleton-info {
+  padding: 2.5rem;
+}
+.skeleton-title {
+  height: 40px;
+  width: 80%;
+  background-color: var(--border-color);
+  border-radius: 6px;
+  animation: pulse-subtle 2s infinite ease-in-out; /* <-- Use new pulse */
+  margin-bottom: 1.5rem;
+}
+.skeleton-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.skeleton-meta-item {
+  height: 30px;
+  width: 80px;
+  background-color: var(--border-color);
+  border-radius: 4px;
+  animation: pulse-subtle 2s infinite ease-in-out; /* <-- Use new pulse */
+}
+.skeleton-text {
+  height: 20px;
+  background-color: var(--border-color);
+  border-radius: 4px;
+  animation: pulse-subtle 2s infinite ease-in-out; /* <-- Use new pulse */
+  margin-bottom: 0.75rem;
+}
+.skeleton-text.short { width: 60%; }
+
+/* --- Responsiveness --- */
+@media (max-width: 900px) {
+  .detail-content-wrapper,
+  .skeleton-loader {
+    /* Stack image on top of text */
+    grid-template-columns: 1fr;
+  }
+
+  .detail-image img,
+  .skeleton-image-box {
+    width: 100%;
+    /* Set a max height for mobile */
+    max-height: 500px;
+    min-height: auto;
+    border-bottom: 2px solid var(--border-color);
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-page {
+    padding: 1rem;
+  }
+  .detail-info {
+    padding: 1.5rem;
+  }
+  .detail-title {
+    font-size: 2rem;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-subtle {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 1;
+  }
+}
